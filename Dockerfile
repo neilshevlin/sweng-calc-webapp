@@ -1,5 +1,5 @@
 # pull the base image
-FROM node:alpine
+FROM node:13.12.0-alpine
 
 
 # set the working direction
@@ -14,7 +14,8 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json ./
 COPY package-lock.json ./
 
-RUN npm install
+RUN npm install --silent
+RUN npm install react-scripts@3.4.1 -g --silent
 
 
 # add app
