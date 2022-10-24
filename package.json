@@ -1,0 +1,30 @@
+{
+  "name": "sweng-calc-webapp",
+  "version": "0.2.0",
+  "private": false,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest --watch", 
+    "workflow": "jest --forceExit --detectOpenHandles"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/material": "^5.10.10",
+    "next": "12.3.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "babel-jest": "^29.2.1",
+    "eslint": "8.26.0",
+    "eslint-config-next": "12.3.1",
+    "jest": "^29.2.1",
+    "jest-environment-jsdom": "^29.2.1"
+  }
+}
