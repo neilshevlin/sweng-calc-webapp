@@ -1,7 +1,7 @@
 {
   "name": "sweng-calc-webapp",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.2.0",
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
