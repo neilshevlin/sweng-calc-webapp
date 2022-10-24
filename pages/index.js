@@ -4,6 +4,9 @@ import styles from '../styles/Home.module.css'
 import * as React from 'react'
 import Box from '@mui/material/Box';
 import { Button, TextField} from '@mui/material';
+import Calculator from './calculator';
+
+
 
 export default function Home() {
   return (
