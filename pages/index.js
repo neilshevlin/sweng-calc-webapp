@@ -4,8 +4,11 @@ import styles from '../styles/Home.module.css'
 import * as React from 'react'
 import Box from '@mui/material/Box';
 import { Button, TextField} from '@mui/material';
+import { UseState } from 'react';
 
 export default function Home() {
+  const [string, setString] = React.useState('');
+
   return (
     <div className={styles.container}>
       <Head>
@@ -45,8 +48,42 @@ export default function Home() {
           noValidate
           autoComplete="off"
         >
-          <TextField fullWidth label="Enter some problem for calculation" id="fullWidth"/>
+          <TextField 
+          fullWidth 
+          label="Enter some problem for calculation" 
+          id="fullWidth"
+          variant="outlined"
+          value = {string}
+          onChange={(e) => {
+            setString(e.target.value);
+          }}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
+              // call the api
+              fetch('/api/parse', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  string: string,
+                }),
+              })
+                .then((res) => res.json())
+                .then((data) => {
+                  console.log(data);
+                });
+
+              // prevent default is needed here because the default behavior of the enter key is to submit the form, which will refresh the page
+              e.preventDefault();
+              setString('');
+            }
+          }}
+          
+          />
       </Box>
+      <p>{string}</p>
+      
          
       </main>
 
