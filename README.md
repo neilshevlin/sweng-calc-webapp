@@ -18,6 +18,17 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
+
+## Run on Docker
+
+The image should allow you to build and deploy the image on a docker container.
+First make sure you have docker installed on your machine.
+Then:
+1. Build the Container: `docker build -t calculator .`
+2. Run the Container: `docker run -p 3000:3000 calculator`
+
+The application should now be running on port 3000 and will be available at http://localhost:3000 like a usual next.js application.
+
 ## Learn More
 
 The application is built using several technologies, to learn more, check out the following resources:
