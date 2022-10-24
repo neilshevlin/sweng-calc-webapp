@@ -1,5 +1,5 @@
 # pull the base image
-FROM node:13.12.0-alpine
+FROM node:alpine
 
 
 # set the working direction
