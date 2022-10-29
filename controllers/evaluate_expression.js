@@ -62,8 +62,6 @@ function checkForMultipleOperators(expression) {
     return false;
 }
 
-
-
 function checkForNumbers(expression) {
     for(let i = 0; i < expression.length; i++) {
         if(!isNaN(parseInt(expression[i]))) {
@@ -110,7 +108,6 @@ function checkForMultipleParenthesis(expression) {
     return false;
 }
 
-
 function checkForDecimal(expression) {
     for(let i = 0; i < expression.length; i++) {
         if(expression[i] == ".") {
@@ -119,6 +116,7 @@ function checkForDecimal(expression) {
     }
     return false;
 }
+
 
 function checkForInvalidDecimals(expression) {
     for(let i = 0; i < expression.length; i++) {
@@ -148,40 +146,3 @@ function checkForNegative(expression) {
     }
     return false;
 }
-
-function checkForInvalidNegative(expression) {
-    for(let i = 0; i < expression.length; i++) {
-        if(expression[i] == "-" && isNaN(parseInt(expression[i+1]))) {
-            return false; // we can't have a negative without a number after it
-        }
-    }
-    return true;
-}
-
-
-function checkForLetters(expression) {
-    for(let i = 0; i < expression.length; i++) {
-        if(isNaN(parseInt(expression[i])) && expression[i] != "-" && expression[i] != "." && expression[i] != "(" && expression[i] != ")") {
-            return true;
-        }
-    }
-    return false;
-}
-
-function checkForMultipleNegative(expression) {
-    for(let i = 0; i < expression.length; i++) {
-        if(expression[i] == "-") {
-            if(expression[i+1] == "-") {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-
-
-
-
-
-
