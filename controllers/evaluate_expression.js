@@ -33,6 +33,16 @@ function checkForInvalidCharacters(expression) {
     return true;
 }
 
+function checkForOperators(expression) {
+    for(let i = 0; i < expression.length; i++) {
+        if(isNaN(parseInt(expression[i])) && expression[i] != "-") {
+            return true;
+        }
+    }
+    return false;
+}
+
+
 
 
 
