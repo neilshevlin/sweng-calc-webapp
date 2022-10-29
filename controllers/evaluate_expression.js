@@ -51,7 +51,16 @@ function checkForInvalidOperators(expression) {
     return true;
 }
 
-
+function checkForMultipleOperators(expression) {
+    for(let i = 0; i < expression.length; i++) {
+        if(isNaN(parseInt(expression[i])) && expression[i] != "-" && expression[i] != ".") {
+            if(isNaN(parseInt(expression[i+1])) && expression[i+1] != "-" && expression[i+1] != ".") {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 
 
 
