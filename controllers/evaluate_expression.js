@@ -80,6 +80,23 @@ function checkForParenthesis(expression) {
     return false;
 }
 
+function checkForInvalidParenthesis(expression) {
+    let open = 0;
+    let close = 0;
+    for(let i = 0; i < expression.length; i++) {
+        if(expression[i] == "(") {
+            open++;
+        }
+        else if(expression[i] == ")") {
+            close++;
+        }
+    }
+    if(open != close) {
+        return true;
+    }
+    return false;
+}
+
 
 
 
