@@ -62,6 +62,16 @@ function checkForMultipleOperators(expression) {
     return false;
 }
 
+function checkForNumbers(expression) {
+    for(let i = 0; i < expression.length; i++) {
+        if(!isNaN(parseInt(expression[i]))) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
 
 
 
