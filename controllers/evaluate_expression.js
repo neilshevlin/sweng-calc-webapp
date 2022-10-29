@@ -127,3 +127,13 @@ function checkForInvalidDecimals(expression) {
     return true;
 }
 
+function checkForMultipleDecimals(expression) {
+    for(let i = 0; i < expression.length; i++) {
+        if(expression[i] == ".") {
+            if(expression[i+1] == ".") {
+                return true;
+            }
+        }
+    }
+    return false;
+}
