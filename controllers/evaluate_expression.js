@@ -42,6 +42,14 @@ function checkForOperators(expression) {
     return false;
 }
 
+function checkForInvalidOperators(expression) {
+    for(let i = 0; i < expression.length; i++) {
+        if(expression[i] == "/" && expression[i+1] == "0") {
+            return false; // we can't divide by 0
+        }
+    }
+    return true;
+}
 
 
 
