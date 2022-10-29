@@ -137,3 +137,12 @@ function checkForMultipleDecimals(expression) {
     }
     return false;
 }
+
+function checkForNegative(expression) {
+    for(let i = 0; i < expression.length; i++) {
+        if(expression[i] == "-") {
+            return true;
+        }
+    }
+    return false;
+}
