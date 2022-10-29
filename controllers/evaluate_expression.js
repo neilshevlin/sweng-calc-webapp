@@ -146,3 +146,12 @@ function checkForNegative(expression) {
     }
     return false;
 }
+
+function checkForInvalidNegative(expression) {
+    for(let i = 0; i < expression.length; i++) {
+        if(expression[i] == "-" && isNaN(parseInt(expression[i+1]))) {
+            return false; // we can't have a negative without a number after it
+        }
+    }
+    return true;
+}
