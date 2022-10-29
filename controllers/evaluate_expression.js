@@ -118,3 +118,12 @@ function checkForDecimal(expression) {
 }
 
 
+function checkForInvalidDecimals(expression) {
+    for(let i = 0; i < expression.length; i++) {
+        if(expression[i] == "." && isNaN(parseInt(expression[i+1]))) {
+            return false; // we can't have a decimal without a number after it
+        }
+    }
+    return true;
+}
+
