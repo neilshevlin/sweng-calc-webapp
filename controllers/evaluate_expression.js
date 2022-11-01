@@ -22,10 +22,14 @@ export function evaluateExpression(expression) {
 function buildInfix(expression) {
     number = ""
     infix = []
+
     for(let i = 0; i < expression.length; i++){
         //if integer or . is encountered, add to current number  
         if(isNaN(parseInt(expression.charAt(i))) || expression.charAt(i) == '.')
             number += expression[i];
+
+        //use encountering a valid character that is not an int or floating point
+        //in order to determine when a float is finished in string
 
         //if solo operator encountered, add number built so far to array
         //and then push operator as new element
@@ -37,22 +41,42 @@ function buildInfix(expression) {
            expression.charAt(i) == ')' ||       //R brackets
            expression.charAt(i) == '^')         //power
         {
-
+            infix.push(number);
+            number = "";
+            infix.push("" + expression.charAt(i));
         }
 
-        //if operator encountered that takes 3 characters to represent
-        //do same as above, but afterwards increment i to "skip" characters in operator
-        else if((expression.charAt(i) == 'l' &&
+        //log and exp operators require special functions
+        //to append them to array, and increment i
+        else if(expression.charAt(i) == 'l' &&
                 expression.charAt(i+1) == 'o' &&
-                expression.charAt(i+2) == 'g') ||
-                (expression.charAt(i) == 'e' &&
-                expression.charAt(i+1) == 'x' &&
-                expression.charAt(i+2) == 'p'))
+                expression.charAt(i+2) == 'g')
         {
             i += 2
+            infix.push(number);
+            number = "";
+            infix.push("log");
+        }
+        else if (expression.charAt(i) == 'e' &&
+                expression.charAt(i+1) == 'x' &&
+                expression.charAt(i+2) == 'p')
+        {
+            i += 2
+            infix.push(number);
+            number = "";
+            infix.push("exp");
         }
 
-    }
+        else {
+            //if reached here then string is not valid, return error
+            return [];
+        }
+    }//end of for loop through expression
+    
+    //at end of string, should have unpushed number left over (no operator was encountered to push it), so push that
+    infix.push(number);
+    //return expression as infix array
+    return infix;
 }
 
 //function for converting an infix expression (represented as an array)
