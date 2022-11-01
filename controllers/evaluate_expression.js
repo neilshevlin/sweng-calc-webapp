@@ -173,8 +173,26 @@ function evaluatePostFix(postfix){
 
 //function for checking if an expression is valid
 //calls all specific validation methods listed below
-function validateExpression(expression){
-
+function validateExpression(exp){
+    if(checkFirstChar(exp) &&
+       checkLastChar(exp) &&
+       checkForInvalidCharacters(exp) &&
+       checkForOperators(exp) &&
+       checkForInvalidOperators(exp) &&
+       checkForMultipleOperators(exp) &&
+       checkForNumbers(exp) &&
+       checkForParenthesis(exp) &&
+       checkForInvalidParenthesis(exp) &&
+       checkForMultipleParenthesis(exp) &&
+       checkForDecimal(exp) &&
+       checkForInvalidDecimals(exp) &&
+       checkForMultipleDecimals(exp) &&
+       checkForNegative(exp))   //add additional validation checks to this if statement as they are written
+       //if passed all checks, return true
+        return true;
+        
+    //if failed one ore more checks, return false
+    return false
 }
 
 // we can make a bunch of other functions to evaluate the string if we need to. 
