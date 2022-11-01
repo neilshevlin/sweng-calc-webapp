@@ -12,6 +12,25 @@ export function evaluateExpression(expression) {
     }
 }
 
+//functions for evaluating a valid expression
+//takes a string "expression" and converts it into a string array
+//where each element of the array is either an int, float, or operator
+function buildInfix(expression) {
+
+}
+
+//function for converting an infix expression (represented as an array)
+//into a postfix expression (also represented as an array)
+function buildPostFix(infix){
+
+}
+
+//function for evaluating a postfix expression (represented as an array)
+//and returning a float of the calculated result
+function evaluatePostFix(postfix){
+    
+}
+
 // we can make a bunch of other functions to evaluate the string if we need to. 
 
 function checkFirstChar(expression) {
