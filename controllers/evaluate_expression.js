@@ -46,7 +46,7 @@ function buildInfix(expression) {
         else if(expression.charAt(i) == '+' ||       //addition
            expression.charAt(i) == '-' ||       //subtractio 
            expression.charAt(i) == '*' ||       //multiplication
-           expression.charAt(i) == '\\' ||      //division
+           expression.charAt(i) == '/' ||       //division
            expression.charAt(i) == '(' ||       //L brackets
            expression.charAt(i) == ')' ||       //R brackets
            expression.charAt(i) == '^')         //power
@@ -89,10 +89,25 @@ function buildInfix(expression) {
     return infix;
 }
 
+//function for gettin precedence of operator
+//used in buildPostFix
+function getOperatorPrecedence(opr){
+    if(opr == "+" || opr == "-")
+        return 1;
+    if(opr == "*" || opr == "/")
+        return 2;
+    if(opr == "^")
+        return 3;
+    if(opr == "log" || opr == "exp")
+        return 4;
+    return 0;
+}
+
 //function for converting an infix expression (represented as an array)
 //into a postfix expression (also represented as an array)
 function buildPostfix(infix){
-
+    postfix = [];
+    operatorStack = [];
 }
 
 //function for evaluating a postfix expression (represented as an array)
