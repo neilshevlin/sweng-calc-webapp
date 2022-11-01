@@ -4,7 +4,11 @@ export function evaluateExpression(expression) {
         return false;
     }
     else {
-        return expression;
+        //break string into array representing infix expression
+        infix = buildInfix(expression);
+        postfix = buildPostfix(infix);
+        result = evaluatePostFix(postfix);
+        return result;
     }
 }
 
