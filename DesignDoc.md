@@ -3,7 +3,10 @@
 ## Overview
 - **status**: In progress
 - **Members**: 
+    - Daniel Madaghjian
+    - Indigo Bosworth
     - Neil Shevlin
+    - Ryan Baird
 
 The aim of this project is to build a calculator web application, which uses CI/CD practices, containerisation, test driven development and proffessional version control paradigms.
 
@@ -23,12 +26,24 @@ The goal of this project is to build a calculator implemented as a web app. We w
 7. There will be a CI/CD pipeline using github actions, which will control whether specific images get sent to Docker Hub.
 
 ### Tasks and timeline
-- [ ] Setup the initial react application.
-- [ ] Write Docker file for react application.
-- [ ] Write Github actions file to trigger on pushing application to main.
-- [ ] Configure Github actions to take image and deploy to Docker Hub.
-- [ ] Implement input functionality in the react application to accept some string.
+- [X] Setup the initial react application.
+- [X] Write Docker file for react application.
+- [X] Write Github actions file to trigger on pushing application to main.
+- [X] Configure Github actions to take image and deploy to Docker Hub.
+- [X] Implement input functionality in the react application to accept some string.
 - [ ] Write unit tests for the application logic (parsing maths strings).
-- [ ] Integrate unit tests with github actions.
+- [X] Integrate unit tests with github actions.
 - [ ] Write mathematical parsing logic to pass the unit test and integrations tests.
 - [ ] Deploy in two releases.
+
+### Additional assignment features
+- [ ] Can handle both integers and floating-point numbers.
+- [ ] Should be capable of performing addition, subtraction, multiplication, division, and power (^).
+- [ ] Should be able to work with expressions containing brackets.
+- [ ] Should be capable of performing the log (natural log) and exp functions.
+- [ ] The results should be rounded off to 3 decimal places.
+- [ ] The user interface should be designed properly.
+- [ ] Document with description, features, contribution, link to repo, and graph of commit log.
+- [ ] Video showing a demo of the web app.
+- [ ] Add the account ‘demonstrators’ to the repo.
+
