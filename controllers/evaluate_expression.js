@@ -5,14 +5,24 @@ export function evaluateExpression(expression) {
     }
     else {
         //remove all spaces from expression
-
+        expression = expression.replace(/\s/g, '');
         //check that string is valid here
+        isValid = validateExpression(expression);
 
-        //break string into array representing infix expression
-        infix = buildInfix(expression);
-        postfix = buildPostfix(infix);
-        result = evaluatePostFix(postfix);
-        return result;
+        
+        if(isValid){
+            //if string valid, break into infix expression as array
+            infix = buildInfix(expression);
+            //convert infix exp into postfix exp
+            postfix = buildPostfix(infix);
+            //evaluate result as float from postfix expression
+            result = evaluatePostFix(postfix);
+            return result;
+        }else{
+            //if expression not valid, return false (error)
+            return false;
+        }
+        
     }
 }
 
@@ -72,7 +82,7 @@ function buildInfix(expression) {
             return [];
         }
     }//end of for loop through expression
-    
+
     //at end of string, should have unpushed number left over (no operator was encountered to push it), so push that
     infix.push(number);
     //return expression as infix array
