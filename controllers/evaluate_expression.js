@@ -128,12 +128,41 @@ function buildPostfix(infix){
         }
         //TODO: add ability handle log and exp with the brackets
 
-        
+        //if x is an operator
+        else if(getOperatorPrecedence(x) > 0){
 
+            //very first operator is pushed to stack
+            if(operatorStack.isEmpty())
+                operatorStack.push(x);
+            
+            //check precedence order of the top of stack and incoming operator
+            //if stack top has higher priority pop it and put in postfix
+            //if precedence is lower priority, push incoming onto stack
+            else{
+                if(getOperatorPrecedence(operatorStack[operatorStack.length -1]) >= getOperatorPrecedence(x)){
+                    postfix.push(operatorStack.pop());
+                    operatorStack.push(x);
+                }else{
+                    operatorStack.push(x);
+                }
+            }
 
+        }
 
-    }
+        //else, if number, add to postfix expression
+        else{
+            postfix.push(x);
+        }
+        //increment index
+        i++;
+    }// end of while loop
 
+    //if infix is fully iterated through, pop all remaining elements in operatorStack to postfix
+    if(!operatorStack.isEmpty())
+        while(!operatorStack.isEmpty())
+            postfix.push(operatorStack.pop());
+
+    //return the final postfix array expression
     return postfix;
 }
 
