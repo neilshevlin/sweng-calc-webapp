@@ -145,7 +145,6 @@ function buildPostfix(infix){
                     operatorStack.push(x);
                 }
             }
-
         }
 
         //else, if number, add to postfix expression
@@ -168,7 +167,45 @@ function buildPostfix(infix){
 //function for evaluating a postfix expression (represented as an array)
 //and returning a float of the calculated result
 function evaluatePostFix(postfix){
+    calculationStack = [];
 
+    //iterate through postfix expression and resolve every number and operator
+    for(let i = 0; i < postfix.length; i++){
+
+        //if operator encountered, pop from calculation stack and perform operation
+        if(getOperatorPrecedence(postfix[i])){
+            switch(postFix[i]){
+                case "+": 
+                    calculationStack.push( calculationStack.pop() + calculationStack.pop() );
+                    break;
+                case "-":
+                    calculationStack.push( calculationStack.pop() - calculationStack.pop() );
+                    break;
+                case "*":
+                    calculationStack.push( calculationStack.pop() * calculationStack.pop() );
+                    break;
+                case "/":
+                    calculationStack.push( calculationStack.pop() / calculationStack.pop() );
+                    break;
+                case "^":
+                    calculationStack.push( calculationStack.pop() /*TODO*/ calculationStack.pop() );
+                    break;
+                case "log":
+                    calculationStack.push( calculationStack.pop() /*TODO*/ );
+                    break;
+                case "exp":
+                    calculationStack.push( calculationStack.pop() /*TODO*/ );
+                    break;
+                default:
+                    break;
+            }
+        }else{
+            //if number encountered, parse string into a float, and push it to calculation stack
+            calculationStack.push(parseFloat(postfix[i]));
+        }
+    }// end of for loop
+    //return the only value left on the calculation stack
+    return calculationStack.pop();
 }
 
 //function for checking if an expression is valid
