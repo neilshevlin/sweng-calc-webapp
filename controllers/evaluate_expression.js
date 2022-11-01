@@ -106,8 +106,35 @@ function getOperatorPrecedence(opr){
 //function for converting an infix expression (represented as an array)
 //into a postfix expression (also represented as an array)
 function buildPostfix(infix){
+    //create empty stacks for method
     postfix = [];
     operatorStack = [];
+
+    //iterate through infix
+    i = 0;
+    while(i < infix.length){
+        //get current string as variable x
+        x = infix[i]
+
+        //if opened brackets, push to stack
+        if(x == "(")
+            operatorStack.push(x);
+
+        //if closed brackets, push operators to postfix until running into opening bracket
+        else if(x == ")"){
+            while(operatorStack[operatorStack.length -1] != "("){
+                postfix.push(operatorStack.pop()); }
+            operatorStack.pop();
+        }
+        //TODO: add ability handle log and exp with the brackets
+
+        
+
+
+
+    }
+
+    return postfix;
 }
 
 //function for evaluating a postfix expression (represented as an array)
