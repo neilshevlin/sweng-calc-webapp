@@ -91,13 +91,19 @@ function buildInfix(expression) {
 
 //function for converting an infix expression (represented as an array)
 //into a postfix expression (also represented as an array)
-function buildPostFix(infix){
+function buildPostfix(infix){
 
 }
 
 //function for evaluating a postfix expression (represented as an array)
 //and returning a float of the calculated result
 function evaluatePostFix(postfix){
+
+}
+
+//function for checking if an expression is valid
+//calls all specific validation methods listed below
+function validateExpression(expression){
 
 }
 
