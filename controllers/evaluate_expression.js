@@ -126,7 +126,6 @@ function buildPostfix(infix){
                 postfix.push(operatorStack.pop()); }
             operatorStack.pop();
         }
-        //TODO: add ability handle log and exp with the brackets
 
         //if x is an operator
         else if(getOperatorPrecedence(x) > 0){
