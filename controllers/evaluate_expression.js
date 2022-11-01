@@ -13,8 +13,16 @@ export function evaluateExpression(expression) {
         if(isValid){
             //if string valid, break into infix expression as array
             infix = buildInfix(expression);
+            //if infix is empty, an error has occured, return false
+            if(infix.isEmpty())
+                return false;
+
             //convert infix exp into postfix exp
             postfix = buildPostfix(infix);
+            //if postfix is empty, an error has occured, return false
+            if(postfix.isEmpty())
+                return false;
+
             //evaluate result as float from postfix expression
             result = evaluatePostFix(postfix);
             return result;
