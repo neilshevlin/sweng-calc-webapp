@@ -188,13 +188,13 @@ function evaluatePostFix(postfix){
                     calculationStack.push( calculationStack.pop() / calculationStack.pop() );
                     break;
                 case "^":
-                    calculationStack.push( calculationStack.pop() /*TODO*/ calculationStack.pop() );
+                    calculationStack.push( Math.pow(calculationStack.pop(), calculationStack.pop()) );
                     break;
                 case "log":
-                    calculationStack.push( calculationStack.pop() /*TODO*/ );
+                    calculationStack.push( Math.log(calculationStack.pop()) );
                     break;
                 case "exp":
-                    calculationStack.push( calculationStack.pop() /*TODO*/ );
+                    calculationStack.push( Math.exp(calculationStack.pop()) );
                     break;
                 default:
                     break;
