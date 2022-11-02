@@ -224,8 +224,7 @@ function evaluatePostFix(postfix){
 //calls all specific validation methods listed below
 function validateExpression(exp){
     if(checkFirstChar(exp) &&
-       checkLastChar(exp) &&
-       checkForInvalidCharacters(exp))return true;
+       checkLastChar(exp))return true;
         
     //if failed one ore more checks, return false
     return false
