@@ -16,61 +16,49 @@ describe("Parsing tests", () => {
 // 8. Testing for the ^ power operator
 // 9. Testing for the natural log operator
 // 10. Testing for exponent functions
+
+  test('test simple expression 1-2', () => {
+    var result = evaluateExpression("1-1");
+    expect(result).toBe("0");
+  })
   test('test empty expression', () => {
-    var result = testing("");
+    var result = evaluateExpression("");
     expect(result).toBe("empty expression");
   });
 
   test('test simple expression 1+2', () => {
-    var result = testing("1+1");
+    var result = evaluateExpression("1+1");
     expect(result).toBe("2");
   })
 
-  test('test simple expression 1-2', () => {
-    var result = testing("1-1");
-    expect(result).toBe("0");
-  })
-
   test('test simple expression 1*2', () => {
-    var result = testing("1*1");
+    var result = evaluateExpression("1*1");
     expect(result).toBe("1");
   })
 
   test('test simple expression 1/2', () => {
-    var result = testing("1/1");
+    var result = evaluateExpression("1/1");
     expect(result).toBe("1");
   })
 
   test('test simple expression 1+2+3', () => {
-    var result = testing("1+1+1");
+    var result = evaluateExpression("1+1+1");
     expect(result).toBe("3");
   })
 
   test('test simple expression 1+2-3', () => {
-    var result = testing("1+1-1");
-    expect(result).toBe("1");
+    var result = evaluateExpression("1+2-3");
+    expect(result).toBe("0");
   })
 
   test('test simple expression 1+2*3', () => {
-    var result = testing("1+1*1");
+    var result = evaluateExpression("1+1*1");
     expect(result).toBe("2");
   })
 
   test('test simple expression 1+2/3', () => {
-    var result = testing("1+1/1");
+    var result = evaluateExpression("1+1/1");
     expect(result).toBe("2");
-  })
-  test('test expression 10*30.0', () => {
-    var result = testing("10*30.0");
-    expect(result).toBe("300");
-  })
-  test('test expression 10*30.2', () => {
-    var result = testing("10*30.2");
-    expect(result).toBe("302");
-  })
-  test('test expression 10*30.23', () => {
-    var result = testing("10*30.23");
-    expect(result).toBe("302.3");
   })
  })
 

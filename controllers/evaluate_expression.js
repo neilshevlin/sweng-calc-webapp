@@ -1,31 +1,32 @@
 export function evaluateExpression(expression) {
     // example function to evaluate the expression
     if (expression == "") {
-        return false;
+        return "empty expression";
     }
     else {
         //remove all spaces from expression
         expression = expression.replace(/\s/g, '');
         //check that string is valid here
-        isValid = validateExpression(expression);
+        let isValid = validateExpression(expression);
 
         
         if(isValid){
             //if string valid, break into infix expression as array
-            infix = buildInfix(expression);
+            let infix = buildInfix(expression);
             //if infix is empty, an error has occured, return false
-            if(infix.isEmpty())
+            // check if an array is empty
+            if(infix.length == 0)
                 return false;
 
             //convert infix exp into postfix exp
-            postfix = buildPostfix(infix);
+            let postfix = buildPostfix(infix);
             //if postfix is empty, an error has occured, return false
-            if(postfix.isEmpty())
+            if(postfix.length == 0)
                 return false;
 
             //evaluate result as float from postfix expression
-            result = evaluatePostFix(postfix);
-            return result;
+            let result = evaluatePostFix(postfix);
+            return result.toString();
         }else{
             //if expression not valid, return false (error)
             return false;
@@ -39,12 +40,12 @@ export function evaluateExpression(expression) {
 //takes a string "expression" and converts it into a string array
 //where each element of the array is either an int, float, or operator
 function buildInfix(expression) {
-    number = ""
-    infix = []
+    let number = ""
+    let infix = []
 
     for(let i = 0; i < expression.length; i++){
         //if integer or . is encountered, add to current number  
-        if(isNaN(parseInt(expression.charAt(i))) || expression.charAt(i) == '.')
+        if(!isNaN(parseInt(expression.charAt(i))) || expression.charAt(i) == '.')
             number += expression[i];
 
         //use encountering a valid character that is not an int or floating point
@@ -116,14 +117,14 @@ function getOperatorPrecedence(opr){
 //into a postfix expression (also represented as an array)
 function buildPostfix(infix){
     //create empty stacks for method
-    postfix = [];
-    operatorStack = [];
+    let postfix = [];
+    let operatorStack = [];
 
     //iterate through infix
-    i = 0;
+    let i = 0;
     while(i < infix.length){
         //get current string as variable x
-        x = infix[i]
+        let x = infix[i]
 
         //if opened brackets, push to stack
         if(x == "(")
@@ -140,7 +141,7 @@ function buildPostfix(infix){
         else if(getOperatorPrecedence(x) > 0){
 
             //very first operator is pushed to stack
-            if(operatorStack.isEmpty())
+            if(operatorStack.length == 0)
                 operatorStack.push(x);
             
             //check precedence order of the top of stack and incoming operator
@@ -165,9 +166,11 @@ function buildPostfix(infix){
     }// end of while loop
 
     //if infix is fully iterated through, pop all remaining elements in operatorStack to postfix
-    if(!operatorStack.isEmpty())
-        while(!operatorStack.isEmpty())
+    if(!operatorStack.length == 0){
+        while(!operatorStack.length == 0){
             postfix.push(operatorStack.pop());
+        }
+    }
 
     //return the final postfix array expression
     return postfix;
@@ -176,14 +179,14 @@ function buildPostfix(infix){
 //function for evaluating a postfix expression (represented as an array)
 //and returning a float of the calculated result
 function evaluatePostFix(postfix){
-    calculationStack = [];
+    let calculationStack = [];
 
     //iterate through postfix expression and resolve every number and operator
     for(let i = 0; i < postfix.length; i++){
 
         //if operator encountered, pop from calculation stack and perform operation
         if(getOperatorPrecedence(postfix[i])){
-            switch(postFix[i]){
+            switch(postfix[i]){
                 case "+": 
                     calculationStack.push( calculationStack.pop() + calculationStack.pop() );
                     break;
@@ -222,20 +225,7 @@ function evaluatePostFix(postfix){
 function validateExpression(exp){
     if(checkFirstChar(exp) &&
        checkLastChar(exp) &&
-       checkForInvalidCharacters(exp) &&
-       checkForOperators(exp) &&
-       checkForInvalidOperators(exp) &&
-       checkForMultipleOperators(exp) &&
-       checkForNumbers(exp) &&
-       checkForParenthesis(exp) &&
-       checkForInvalidParenthesis(exp) &&
-       checkForMultipleParenthesis(exp) &&
-       checkForDecimal(exp) &&
-       checkForInvalidDecimals(exp) &&
-       checkForMultipleDecimals(exp) &&
-       checkForNegative(exp))   //add additional validation checks to this if statement as they are written
-       //if passed all checks, return true
-        return true;
+       checkForInvalidCharacters(exp))return true;
         
     //if failed one ore more checks, return false
     return false
@@ -282,17 +272,6 @@ function checkForInvalidOperators(expression) {
         }
     }
     return true;
-}
-
-function checkForMultipleOperators(expression) {
-    for(let i = 0; i < expression.length; i++) {
-        if(isNaN(parseInt(expression[i])) && expression[i] != "-" && expression[i] != ".") {
-            if(isNaN(parseInt(expression[i+1])) && expression[i+1] != "-" && expression[i+1] != ".") {
-                return true;
-            }
-        }
-    }
-    return false;
 }
 
 function checkForNumbers(expression) {
