@@ -55,6 +55,10 @@ describe("Parsing tests", () => {
     var result = evaluateExpression("1+2*3");
     expect(result).toBe("7");
   })
+  test('test simple expression 200/5', () => {
+    var result = evaluateExpression("200/5");
+    expect(result).toBe("40");
+  })
  })
 
 

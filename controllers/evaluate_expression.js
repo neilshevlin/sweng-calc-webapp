@@ -199,7 +199,9 @@ function evaluatePostFix(postfix){
                     calculationStack.push( calculationStack.pop() * calculationStack.pop() );
                     break;
                 case "/":
-                    calculationStack.push( calculationStack.pop() / calculationStack.pop() );
+                    let divisor = calculationStack.pop();
+                    let dividend = calculationStack.pop();
+                    calculationStack.push(dividend / divisor);
                     break;
                 case "^":
                     calculationStack.push( Math.pow(calculationStack.pop(), calculationStack.pop()) );
