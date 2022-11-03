@@ -212,6 +212,9 @@ function evaluatePostFix(postfix){
                 case "/":
                     let divisor = calculationStack.pop();
                     let dividend = calculationStack.pop();
+                    //return error message if division by zero
+                    if(divisor == 0)
+                        return "Error: Division by Zero";
                     calculationStack.push(dividend / divisor);
                     break;
                 case "^":
