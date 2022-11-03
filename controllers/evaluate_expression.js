@@ -13,7 +13,7 @@ export function evaluateExpression(expression) {
         let isValid = isValidexpr(expression);
 
         
-        if(isValid){
+        if(isValid.valid){
             //if string valid, break into infix expression as array
             let infix = buildInfix(expression);
             //if infix is empty, an error has occured, return false
