@@ -9,7 +9,7 @@ export function evaluateExpression(expression) {
         //remove all spaces from expression
         expression = expression.replace(/\s/g, '');
         //check that string is valid here
-        isValid = isValidexpr(expression);
+        let isValid = isValidexpr(expression);
 
         
         if(isValid){
