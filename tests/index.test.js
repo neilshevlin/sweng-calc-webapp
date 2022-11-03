@@ -15,8 +15,16 @@ describe("Parsing tests", () => {
 // 7. Testing for order of operations with parenthesis
 // 8. Testing for the ^ power operator
 // 9. Testing for the natural log operator
-// 10. Testing for exponent functions
-
+// 10. Testing for exponent function
+  
+  test('test simple expression ln2', () => {
+    var result = evaluateExpression("ln2");
+    expect(result).toBe("0.6931471805599453");
+  })
+  test('test simple expression log2', () => {
+    var result = evaluateExpression("log2");
+    expect(result).toBe("0.6931471805599453");
+  })
   test('test simple expression 1-5', () => {
     var result = evaluateExpression("1-5");
     expect(result).toBe("-4");
@@ -59,6 +67,28 @@ describe("Parsing tests", () => {
     var result = evaluateExpression("200/5");
     expect(result).toBe("40");
   })
+  test('test simple expression 1+2*3/4', () => {
+    var result = evaluateExpression("1+2*3/4");
+    expect(result).toBe("2.5");
+  })
+  test('test simple expression 1+2*3/4-5', () => {
+    var result = evaluateExpression("1+2*3/4-5");
+    expect(result).toBe("-2.5");
+  })
+  test('test simple expression 1+2*3/4-5+6', () => {
+    var result = evaluateExpression("1+2*3/4-5+6");
+    expect(result).toBe("3.5");
+  })
+  // test with ^ operator
+  test('test simple expression 2^2', () => {
+    var result = evaluateExpression("2^2");
+    expect(result).toBe("4");
+  })
+  test('test simple expression 2^2^2', () => {
+    var result = evaluateExpression("2^2^2");
+    expect(result).toBe("16");
+  })
+  
  })
 
 
