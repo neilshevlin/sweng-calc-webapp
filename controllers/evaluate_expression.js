@@ -61,7 +61,8 @@ function buildInfix(expression) {
            expression.charAt(i) == ')' ||       //R brackets
            expression.charAt(i) == '^')         //power
         {
-            infix.push(number);
+            if(number != "")
+                infix.push(number);
             number = "";
             infix.push("" + expression.charAt(i));
         }
@@ -73,7 +74,8 @@ function buildInfix(expression) {
                 expression.charAt(i+2) == 'g')
         {
             i += 2
-            infix.push(number);
+            if(number != "")
+                infix.push(number);
             number = "";
             infix.push("log");
         }
@@ -82,7 +84,8 @@ function buildInfix(expression) {
                 expression.charAt(i+2) == 'p')
         {
             i += 2
-            infix.push(number);
+            if(number != "")
+                infix.push(number);
             number = "";
             infix.push("exp");
         }
@@ -92,7 +95,8 @@ function buildInfix(expression) {
             expression.charAt(i+1) == 'n')
         {
             i += 1
-            infix.push(number);
+            if(number != "")
+                infix.push(number);
             number = "";
             infix.push("ln");
         }
@@ -105,7 +109,8 @@ function buildInfix(expression) {
     }//end of for loop through expression
 
     //at end of string, should have unpushed number left over (no operator was encountered to push it), so push that
-    infix.push(number);
+    if(number != "")
+        infix.push(number);
     //return expression as infix array
     return infix;
 }
@@ -212,6 +217,9 @@ function evaluatePostFix(postfix){
                 case "/":
                     let divisor = calculationStack.pop();
                     let dividend = calculationStack.pop();
+                    //return error message if division by zero
+                    if(divisor == 0)
+                        return "Error: Division by Zero";
                     calculationStack.push(dividend / divisor);
                     break;
                 case "^":
