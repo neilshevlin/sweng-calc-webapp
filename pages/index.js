@@ -30,7 +30,7 @@ export default function Home() {
     {char: '+', color:'black'},
     {char: '-', color:'black'},
     {char: 'Ans', color:'black'},
-    {char: 'Exp', color:'black'},
+    {char: 'exp', color:'black'},
     {char: '0', color:'grey'},
     {char: '.', color:'grey'},
     {char: '=', color:'green'},
@@ -126,7 +126,11 @@ export default function Home() {
                               setString(answer);
                             } else if (key.char == 'Exp'){
                               setString(answer);
-                            } else {
+                            }else if(key.char == '÷') {
+                              setString(string + '/');
+                            }else if(key.char == 'x') {
+                              setString(string + '*');
+                            }else {
                               setString(string + key.char);
                             }}}
                           >{key.char}</Button>
