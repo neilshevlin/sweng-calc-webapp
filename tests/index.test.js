@@ -104,7 +104,7 @@ describe("Parsing tests", () => {
     expect(result).toBe("9.78905609893065");
   })
   test('test simple expression 1.5 + log(3)', () => {
-    var result = evaluateExpression("2.4 + exp(2)");
+    var result = evaluateExpression("1.5 + log(3)");
     expect(result).toBe("2.5986122886681096");
   })
   test('test simple expression 4/0', () => {
