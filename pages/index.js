@@ -3,12 +3,38 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import * as React from 'react'
 import Box from '@mui/material/Box';
-import { Button, TextField} from '@mui/material';
+import { Button, TextField, Card, CardActions, CardContent, Typography, CardHeader, Grid} from '@mui/material';
 import { UseState } from 'react';
 
 export default function Home() {
   const [string, setString] = React.useState('');
-
+  const [answer, setAnswer] = React.useState('');
+  const key_second = [
+    {char: '7', color:'grey'},
+    {char: '8', color:'grey'},
+    {char: '9', color:'grey'},
+    {char: 'AC', color:'black'},
+    {char: '(', color:'black'},
+    {char: ')', color:'black'},
+    {char: 'ln', color:'black'},
+    {char: '4', color:'grey'},
+    {char: '5', color:'grey'},
+    {char: '6', color:'grey'},
+    {char: '÷', color:'black'},
+    {char: 'x', color:'black'},
+    {char: 'log', color:'black'},
+    {char: '^', color:'black'},
+    {char: '1', color:'grey'},
+    {char: '2', color:'grey'},
+    {char: '3', color:'grey'},
+    {char: '+', color:'black'},
+    {char: '-', color:'black'},
+    {char: 'Ans', color:'black'},
+    {char: 'exp', color:'black'},
+    {char: '0', color:'grey'},
+    {char: '.', color:'grey'},
+    {char: '=', color:'green'},
+]
   return (
     <div className={styles.container}>
       <Head>
@@ -23,7 +49,7 @@ export default function Home() {
         <Box
           component="form"
           sx={{
-            width: 500,
+            width: 750,
             mt: 10,
             maxWidth: '100%',
             '& .MuiOutlinedInput-root': {
@@ -48,6 +74,73 @@ export default function Home() {
           noValidate
           autoComplete="off"
         >
+          <Card sx={{ mb: 4, backgroundColor: '#efefef', border: 'solid blue'}}>
+            <CardHeader
+              title={answer}
+              sx={{ color: 'white', backgroundColor: 'black', minHeight: 70}}
+            />
+            <CardActions>
+                <Grid container >
+                  {key_second.map((key) => {
+                    return (
+                      <Grid item xs={1.7} key={key}>
+                        <Button variant="contained" sx={{ 
+                          width: 100, 
+                          height: 40, 
+                          fontSize: 20, 
+                          backgroundColor:`${key.color}`, 
+                          color: 'white', 
+                          mx:1, 
+                          my:0.5,
+                          // on hover, change color to white
+                          '&:hover': {
+                            backgroundColor: `${key.color}`,
+                            opacity: 0.8,
+                          }, 
+                        }}
+                          onClick={() => 
+                            {if (key.char == 'AC'){
+                              setString('');
+                              setAnswer('');
+                            } else if (key.char == '='){
+                              setString(answer);
+                              fetch('/api/parse', {
+                                method: 'POST',
+                                headers: {
+                                  'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({string: string}),
+                              })
+                              .then((res) => res.json())
+                              .then((data) => {
+                                if (data.error){
+                                  setAnswer(data.error);
+                                } else {
+                                  setAnswer(data.answer);
+                                }
+                              });
+                              setAnswer('');
+                              setString('');
+
+                            } else if (key.char == 'Ans'){
+                              setString(answer);
+                            } else if (key.char == 'Exp'){
+                              setString(answer);
+                            }else if(key.char == '÷') {
+                              setString(string + '/');
+                            }else if(key.char == 'x') {
+                              setString(string + '*');
+                            }else {
+                              setString(string + key.char);
+                            }}}
+                          >{key.char}</Button>
+                      </Grid>
+                    )
+                  })}  
+                </Grid>
+            </CardActions>
+          </Card>
+
           <TextField 
           fullWidth 
           label="Enter some problem for calculation" 
@@ -71,7 +164,7 @@ export default function Home() {
               })
                 .then((res) => res.json())
                 .then((data) => {
-                  console.log(data);
+                  setAnswer(data.answer);
                 });
 
               // prevent default is needed here because the default behavior of the enter key is to submit the form, which will refresh the page
@@ -81,8 +174,7 @@ export default function Home() {
           }}
           
           />
-      </Box>
-      <p>{string}</p>
+        </Box>
       
          
       </main>

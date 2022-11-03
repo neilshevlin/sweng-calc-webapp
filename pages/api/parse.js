@@ -1,8 +1,8 @@
 import { evaluateExpression } from '../../controllers/evaluate_expression';
-import { testing } from '../../controllers/eval_alpha';
+// import { testing } from '../../controllers/eval_alpha';
 
 export default function handler(req, res) {
-    let answer = testing(req.body.string);
+    let answer = evaluateExpression(req.body.string);
 
     if (answer == false){
         res.status(400).json({ error: 'Invalid expression' });
