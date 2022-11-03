@@ -95,7 +95,10 @@ describe("Parsing tests", () => {
     var result = evaluateExpression("2^2^2");
     expect(result).toBe("16");
   })
-  
+  test('test simple expression 4/0', () => {
+    var result = evaluateExpression("4/0");
+    expect(result).toBe("Error: Division by Zero");
+  })
 
   
  })
