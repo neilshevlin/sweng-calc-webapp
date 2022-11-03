@@ -86,6 +86,17 @@ function buildInfix(expression) {
             number = "";
             infix.push("exp");
         }
+        // natural log operations
+        else if(
+            expression.charAt(i) == 'l' &&
+            expression.charAt(i+1) == 'n')
+        {
+            i += 1
+            infix.push(number);
+            number = "";
+            infix.push("ln");
+        }
+
 
         else {
             //if reached here then string is not valid, return error
@@ -108,7 +119,7 @@ function getOperatorPrecedence(opr){
         return 2;
     if(opr == "^")
         return 3;
-    if(opr == "log" || opr == "exp")
+    if(opr == "log" || opr == "exp" || opr == "ln")
         return 4;
     return 0;
 }
@@ -191,22 +202,31 @@ function evaluatePostFix(postfix){
                     calculationStack.push( calculationStack.pop() + calculationStack.pop() );
                     break;
                 case "-":
-                    calculationStack.push( calculationStack.pop() - calculationStack.pop() );
+                    let subtrahend = calculationStack.pop();
+                    let minuend = calculationStack.pop();
+                    calculationStack.push(minuend - subtrahend);
                     break;
                 case "*":
                     calculationStack.push( calculationStack.pop() * calculationStack.pop() );
                     break;
                 case "/":
-                    calculationStack.push( calculationStack.pop() / calculationStack.pop() );
+                    let divisor = calculationStack.pop();
+                    let dividend = calculationStack.pop();
+                    calculationStack.push(dividend / divisor);
                     break;
                 case "^":
-                    calculationStack.push( Math.pow(calculationStack.pop(), calculationStack.pop()) );
+                    let exponent = calculationStack.pop();
+                    let base = calculationStack.pop();
+                    calculationStack.push(Math.pow(base, exponent));
                     break;
                 case "log":
                     calculationStack.push( Math.log(calculationStack.pop()) );
                     break;
                 case "exp":
                     calculationStack.push( Math.exp(calculationStack.pop()) );
+                    break;
+                case "ln":
+                    calculationStack.push( Math.log(calculationStack.pop()) );
                     break;
                 default:
                     break;
@@ -223,11 +243,7 @@ function evaluatePostFix(postfix){
 //function for checking if an expression is valid
 //calls all specific validation methods listed below
 function validateExpression(exp){
-    if(checkFirstChar(exp) &&
-       checkLastChar(exp))return true;
-        
-    //if failed one ore more checks, return false
-    return false
+    return true;
 }
 
 // we can make a bunch of other functions to evaluate the string if we need to. 
