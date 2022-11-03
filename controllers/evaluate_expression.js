@@ -191,7 +191,9 @@ function evaluatePostFix(postfix){
                     calculationStack.push( calculationStack.pop() + calculationStack.pop() );
                     break;
                 case "-":
-                    calculationStack.push( calculationStack.pop() - calculationStack.pop() );
+                    let subtrahend = calculationStack.pop();
+                    let minuend = calculationStack.pop();
+                    calculationStack.push(minuend - subtrahend);
                     break;
                 case "*":
                     calculationStack.push( calculationStack.pop() * calculationStack.pop() );
