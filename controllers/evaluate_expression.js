@@ -215,7 +215,9 @@ function evaluatePostFix(postfix){
                     calculationStack.push(dividend / divisor);
                     break;
                 case "^":
-                    calculationStack.push( Math.pow(calculationStack.pop(), calculationStack.pop()) );
+                    let exponent = calculationStack.pop();
+                    let base = calculationStack.pop();
+                    calculationStack.push(Math.pow(base, exponent));
                     break;
                 case "log":
                     calculationStack.push( Math.log(calculationStack.pop()) );
