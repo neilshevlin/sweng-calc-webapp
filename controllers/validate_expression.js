@@ -89,6 +89,7 @@
                         return {code: 4, message: "Incorrect decimal placings", valid: false};
                     }
                  }
+                 //if it is an open bracket
                  else if(currChar == '(')
                  {
                     //if 2 consecutive left brackets
@@ -104,6 +105,7 @@
                     leftBracketUsed = true;
                     
                  }
+                 //if closing bracket
                  else if(currChar == ')')
                  {
                     //if no left bracket was used before it
@@ -116,6 +118,7 @@
                     {
                         checkingLog = false;
                     }
+                    //finished checking exp function
                     if(checkingExp)
                     {
                         checkingExp = false;
@@ -135,9 +138,14 @@
                  else if(currChar == 'l')
                  {
                     checkingLog = true;
+                    //if the next characters do not make up log(x) or ln(x) it returns an error
                     if(expr.charAt(i+1)!='o' || expr.charAt(i+2) != 'g' || expr.charAt(i+3) != '(')
                     {
-                        return {code: 6, message: "Incorrect log function", valid: false};
+                        if(expr.charAt(i+1)!='n' || expr.charAt(i+2)!='(')
+                        {
+                            return {code: 6, message: "Incorrect log function", valid: false};
+                        }
+                        
                     }
                     else if(i!=0)
                     {
@@ -163,10 +171,18 @@
                         return {code: 6, message: "Incorrect log function", valid: false};
                     }
                  }
+                 else if(currChar == 'n')
+                 {
+                    if(!checkingLog)
+                    {
+                        return {code: 6, message: "Incorrect log function", valid: false};
+                    }
+                 }
                  //checking exp
                  else if(currChar == 'e')
                  {
                     checkingExp = true;
+                    //if the next characters do not make up exp(x) it returns an error
                     if(expr.charAt(i+1)!='x' || expr.charAt(i+2) != 'p' || expr.charAt(i+3) != '(')
                     {
                         return {code: 6, message: "Incorrect log function", valid: false};

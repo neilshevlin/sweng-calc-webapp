@@ -105,6 +105,10 @@ test('test expression log(8+4*7)*5', () => {
   var result = isValidexpr("log(8+4*7)*5");
   expect(result.code).toBe(0);
 })
+test('test expression ln(8+4*7)*5', () => {
+  var result = isValidexpr("ln(8+4*7)*5");
+  expect(result.code).toBe(0);
+})
 test('test expression 2+exp(7)', () => {
   var result = isValidexpr("2+exp(7)");
   expect(result.code).toBe(0);
@@ -113,6 +117,7 @@ test('test expression exp(8+4*7)*5', () => {
   var result = isValidexpr("exp(8+4*7)*5");
   expect(result.code).toBe(0);
 })
+
 test('test expression 1++2*3', () => {
   var result = isValidexpr("1++2*3");
   expect(result.code).toBe(1);
