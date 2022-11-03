@@ -18,8 +18,8 @@ describe("Parsing tests", () => {
 // 10. Testing for exponent functions
 
   test('test simple expression 1-2', () => {
-    var result = evaluateExpression("1-1");
-    expect(result).toBe("0");
+    var result = evaluateExpression("1-5");
+    expect(result).toBe("-4");
   })
   test('test empty expression', () => {
     var result = evaluateExpression("");
@@ -27,23 +27,23 @@ describe("Parsing tests", () => {
   });
 
   test('test simple expression 1+2', () => {
-    var result = evaluateExpression("1+1");
-    expect(result).toBe("2");
+    var result = evaluateExpression("1+2");
+    expect(result).toBe("3");
   })
 
   test('test simple expression 1*2', () => {
-    var result = evaluateExpression("1*1");
-    expect(result).toBe("1");
+    var result = evaluateExpression("1*2");
+    expect(result).toBe("2");
   })
 
-  test('test simple expression 1/2', () => {
+  test('test simple expression 1/1', () => {
     var result = evaluateExpression("1/1");
     expect(result).toBe("1");
   })
 
   test('test simple expression 1+2+3', () => {
-    var result = evaluateExpression("1+1+1");
-    expect(result).toBe("3");
+    var result = evaluateExpression("1+2+3");
+    expect(result).toBe("6");
   })
 
   test('test simple expression 1+2-3', () => {
@@ -52,13 +52,8 @@ describe("Parsing tests", () => {
   })
 
   test('test simple expression 1+2*3', () => {
-    var result = evaluateExpression("1+1*1");
-    expect(result).toBe("2");
-  })
-
-  test('test simple expression 1+2/3', () => {
-    var result = evaluateExpression("1+1/1");
-    expect(result).toBe("2");
+    var result = evaluateExpression("1+2*3");
+    expect(result).toBe("7");
   })
  })
 
