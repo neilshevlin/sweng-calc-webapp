@@ -17,7 +17,7 @@ describe("Parsing tests", () => {
 // 9. Testing for the natural log operator
 // 10. Testing for exponent functions
 
-  test('test simple expression 1-2', () => {
+  test('test simple expression 1-5', () => {
     var result = evaluateExpression("1-5");
     expect(result).toBe("-4");
   })
