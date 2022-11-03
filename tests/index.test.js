@@ -95,7 +95,10 @@ describe("Parsing tests", () => {
     var result = evaluateExpression("2^2^2");
     expect(result).toBe("16");
   })
-  
+  test('test simple expression log(3^2 + ln(8^exp(2))/3.333)', () => {
+    var result = evaluateExpression("log(3^2 + ln(8^exp(2))/3.333)");
+    expect(result).toBe("2.610804380306326");
+  })
 
   
  })
