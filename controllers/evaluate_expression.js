@@ -1,3 +1,5 @@
+import { isValidexpr } from "./validate_expression";
+
 export function evaluateExpression(expression) {
     // example function to evaluate the expression
     if (expression == "") {
@@ -7,7 +9,7 @@ export function evaluateExpression(expression) {
         //remove all spaces from expression
         expression = expression.replace(/\s/g, '');
         //check that string is valid here
-        isValid = validateExpression(expression);
+        isValid = isValidexpr(expression);
 
         
         if(isValid){
