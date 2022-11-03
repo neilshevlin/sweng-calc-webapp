@@ -95,7 +95,6 @@ describe("Parsing tests", () => {
     var result = evaluateExpression("2^2^2");
     expect(result).toBe("16");
   })
-
   test('test simple expression 2.4 + exp(2)', () => {
     var result = evaluateExpression("2.4 + exp(2)");
     expect(result).toBe("9.78905609893065");
@@ -104,9 +103,8 @@ describe("Parsing tests", () => {
     var result = evaluateExpression("2.4 + exp(2)");
     expect(result).toBe("2.5986122886681096");
   })
-  
-
-  
+  test('test simple expression 4/0', () => {
+    var result = evaluateExpression("4/0");
+    expect(result).toBe("Error: Division by Zero");
+  })
  })
-
-
