@@ -160,8 +160,10 @@ function getOperatorPrecedence(opr){
         return 2;
     if(opr == "^")
         return 3;
-    if(opr == "log" || opr == "exp" || opr == "ln")
+    if(opr == "sin" || opr == "cos" || opr == "tan")
         return 4;
+    if(opr == "log" || opr == "exp" || opr == "ln")
+        return 5;
     return 0;
 }
 
