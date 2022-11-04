@@ -113,7 +113,7 @@ function buildInfix(expression) {
                 //if number != expression was not valid, pi must have an operator on either side
                 //return error case
                 return []
-            infix.push(String.valueOf(Math.PI));
+            infix.push(Math.PI.toString());
         }
 
 
