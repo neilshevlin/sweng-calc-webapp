@@ -34,6 +34,10 @@ export default function Home() {
     {char: '0', color:'grey'},
     {char: '.', color:'grey'},
     {char: '=', color:'green'},
+
+    {char: 'sin', color:'black'},
+    {char: 'cos', color:'black'},
+    {char: 'tan', color:'black'},
 ]
   return (
     <div className={styles.container}>
