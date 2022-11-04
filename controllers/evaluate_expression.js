@@ -103,6 +103,18 @@ function buildInfix(expression) {
             number = "";
             infix.push("ln");
         }
+        // pi constant number
+        else if(
+            expression.charAt(i) == 'p' &&
+            expression.charAt(i+1) == 'i')
+        {
+            i += 1
+            if(number != "")
+                //if number != expression was not valid, pi must have an operator on either side
+                //return error case
+                return []
+            infix.push(String.valueOf(Math.PI));
+        }
 
 
         else {
