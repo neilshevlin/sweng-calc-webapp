@@ -6,7 +6,8 @@
      *3 = isn't valid: leading 0
      *4 = isn't valid: incorrect decimal placings
      *5 = isn't valid: incorrect use of brackets
-     *6 = isn't valid: Incorrect log or exp function*/
+     *6 = isn't valid: Incorrect log or exp function
+     *8 = isn't valid: Incorrect trigonometry function*/
      
      export function isValidexpr(expr)
      {
@@ -15,6 +16,9 @@
          var leftBracketUsed = false;
          var checkingLog = false;
          var checkingExp = false;
+         var checkingSin = false;
+         var checkingCos = false;
+         var checkingTan = false;
 
          if(expr == "")
          {
@@ -159,7 +163,7 @@
                  }
                  else if(currChar =='o')
                  {
-                    if(!checkingLog)
+                    if(!checkingLog && !checkingCos)
                     {
                         return {code: 6, message: "Incorrect log function", valid: false};
                     }
@@ -173,10 +177,16 @@
                  }
                  else if(currChar == 'n')
                  {
-                    if(!checkingLog)
+                    if(!checkingLog && !checkingSin && checkingTan)
                     {
                         return {code: 6, message: "Incorrect log function", valid: false};
                     }
+                    if(checkingSin)
+                        //close check of sine function if n encountered
+                        checkingSin = false;
+                    if(checkingTan)
+                        //close check of tan function if n encountered
+                        checkingTan = false;
                  }
                  //checking exp
                  else if(currChar == 'e')
@@ -209,6 +219,84 @@
                     if(!checkingExp)
                     {
                         return {code: 6, message: "Incorrect log function", valid: false};
+                    }
+                 }
+
+                 //checking sin
+                 else if(currChar == 's')
+                 {
+
+                    if(checkingCos){
+                        //if checking cos close check when s encountered
+                        checkingCos = false;
+                    }else{
+                        checkingSin = true;
+                        //if the next characters do not make up exp(x) it returns an error
+                        if(expr.charAt(i+1)!='i' || expr.charAt(i+2) != 'n' || expr.charAt(i+3) != '(')
+                        {
+                            return {code: 8, message: "Incorrect sin function", valid: false};
+                        }
+                        else if(i!=0)
+                        {
+                            //if it is not an operator before the log function it is an error: 34log(7+4)
+                            if(!isOperator(expr.charAt(i-1)))
+                            {
+                                return {code: 8, message: "Incorrect sin function", valid: false};
+                            }
+                        }
+                    }
+                    
+                 }
+                 else if(currChar =='i')
+                 {
+                    if(!checkingSin)
+                    {
+                        return {code: 8, message: "Incorrect sin function", valid: false};
+                    }
+                 }
+
+                 //checking cos
+                 else if(currChar == 'c')
+                 {
+                    checkingCos = true;
+                    //if the next characters do not make up exp(x) it returns an error
+                    if(expr.charAt(i+1)!='o' || expr.charAt(i+2) != 's' || expr.charAt(i+3) != '(')
+                    {
+                        return {code: 8, message: "Incorrect cos function", valid: false};
+                    }
+                    else if(i!=0)
+                    {
+                        //if it is not an operator before the log function it is an error: 34log(7+4)
+                        if(!isOperator(expr.charAt(i-1)))
+                        {
+                            return {code: 8, message: "Incorrect cos function", valid: false};
+                        }
+                    }
+                 }
+
+                 //checking tan
+                 else if(currChar == 't')
+                 {
+                    checkingTan = true;
+                    //if the next characters do not make up exp(x) it returns an error
+                    if(expr.charAt(i+1)!='a' || expr.charAt(i+2) != 'n' || expr.charAt(i+3) != '(')
+                    {
+                        return {code: 8, message: "Incorrect tan function", valid: false};
+                    }
+                    else if(i!=0)
+                    {
+                        //if it is not an operator before the log function it is an error: 34log(7+4)
+                        if(!isOperator(expr.charAt(i-1)))
+                        {
+                            return {code: 8, message: "Incorrect tan function", valid: false};
+                        }
+                    }
+                 }
+                 else if(currChar =='a')
+                 {
+                    if(!checkingTan)
+                    {
+                        return {code: 8, message: "Incorrect tan function", valid: false};
                     }
                  }
                      
