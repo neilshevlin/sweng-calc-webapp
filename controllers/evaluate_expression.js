@@ -274,6 +274,15 @@ function evaluatePostFix(postfix){
                 case "ln":
                     calculationStack.push( Math.log(calculationStack.pop()) );
                     break;
+                case "sin":
+                    calculationStack.push( Math.sin(calculationStack.pop()) );
+                    break;
+                case "cos":
+                    calculationStack.push( Math.cos(calculationStack.pop()) );
+                    break;
+                case "tan":
+                    calculationStack.push( Math.tan(calculationStack.pop()) );
+                    break;
                 default:
                     break;
             }
