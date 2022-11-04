@@ -103,6 +103,39 @@ function buildInfix(expression) {
             number = "";
             infix.push("ln");
         }
+        //sine trigonometry function
+        else if (expression.charAt(i) == 's' &&
+                expression.charAt(i+1) == 'i' &&
+                expression.charAt(i+2) == 'n')
+        {
+            i += 2
+            if(number != "")
+                infix.push(number);
+            number = "";
+            infix.push("sin");
+        }
+        //cosine trigonometry function
+        else if (expression.charAt(i) == 'c' &&
+                expression.charAt(i+1) == 'o' &&
+                expression.charAt(i+2) == 's')
+        {
+            i += 2
+            if(number != "")
+                infix.push(number);
+            number = "";
+            infix.push("cos");
+        }
+        //tangent trigonometry function
+        else if (expression.charAt(i) == 't' &&
+                expression.charAt(i+1) == 'a' &&
+                expression.charAt(i+2) == 'n')
+        {
+            i += 2
+            if(number != "")
+                infix.push(number);
+            number = "";
+            infix.push("tan");
+        }
 
 
         else {
