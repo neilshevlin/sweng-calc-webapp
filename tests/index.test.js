@@ -238,4 +238,8 @@ test('test expression 5+3exp(2)', () => {
     var result = evaluateExpression("4/0");
     expect(result).toBe("Error: Division by Zero");
   })
+  test('test simple expression sin(6) + log(20) - cos(1) * tan(4/5)', () => {
+    var result = evaluateExpression("sin(6) + log(20) - cos(1) * tan(4/5)");
+    expect(result).toBe("2.160000688770009");
+  })
 });
