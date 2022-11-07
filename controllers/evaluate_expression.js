@@ -29,7 +29,16 @@ export function evaluateExpression(expression) {
 
             //evaluate result as float from postfix expression
             let result = evaluatePostFix(postfix);
-            return result.toString();
+
+            //limit the result to only three decimal places
+            let resString = result.toString()
+            //if result is not an error message, limit
+            if(!isNaN(resString) && resString.toString().indexOf('.') != -1){
+                resString = parseFloat(resString).toFixed(3);
+                //remove any additional trailing 0s by parsing float again
+                resString = parseFloat(resString).toString();
+            }
+            return resString;
         }else{
             //if expression not valid, return false (error)
             return false;
@@ -104,6 +113,54 @@ function buildInfix(expression) {
             infix.push("ln");
         }
 
+        //sine trigonometry function
+        else if (expression.charAt(i) == 's' &&
+                expression.charAt(i+1) == 'i' &&
+                expression.charAt(i+2) == 'n')
+        {
+            i += 2
+            if(number != "")
+                infix.push(number);
+            number = "";
+            infix.push("sin");
+        }
+        //cosine trigonometry function
+        else if (expression.charAt(i) == 'c' &&
+                expression.charAt(i+1) == 'o' &&
+                expression.charAt(i+2) == 's')
+        {
+            i += 2
+            if(number != "")
+                infix.push(number);
+            number = "";
+            infix.push("cos");
+        }
+        //tangent trigonometry function
+        else if (expression.charAt(i) == 't' &&
+                expression.charAt(i+1) == 'a' &&
+                expression.charAt(i+2) == 'n')
+        {
+            i += 2
+            if(number != "")
+                infix.push(number);
+            number = "";
+            infix.push("tan");
+        }
+
+        // pi constant number
+        else if(
+            expression.charAt(i) == 'p' &&
+            expression.charAt(i+1) == 'i')
+        {
+            i += 1
+            if(number != "")
+                //if number != expression was not valid, pi must have an operator on either side
+                //return error case
+                return []
+            infix.push(Math.PI.toString());
+
+        }
+
 
         else {
             //if reached here then string is not valid, return error
@@ -127,8 +184,10 @@ function getOperatorPrecedence(opr){
         return 2;
     if(opr == "^")
         return 3;
-    if(opr == "log" || opr == "exp" || opr == "ln")
+    if(opr == "sin" || opr == "cos" || opr == "tan")
         return 4;
+    if(opr == "log" || opr == "exp" || opr == "ln")
+        return 5;
     return 0;
 }
 
@@ -239,6 +298,15 @@ function evaluatePostFix(postfix){
                 case "ln":
                     calculationStack.push( Math.log(calculationStack.pop()) );
                     break;
+                case "sin":
+                    calculationStack.push( Math.sin(calculationStack.pop()) );
+                    break;
+                case "cos":
+                    calculationStack.push( Math.cos(calculationStack.pop()) );
+                    break;
+                case "tan":
+                    calculationStack.push( Math.tan(calculationStack.pop()) );
+                    break;
                 default:
                     break;
             }
@@ -251,136 +319,3 @@ function evaluatePostFix(postfix){
     return calculationStack.pop();
 }
 
-//function for checking if an expression is valid
-//calls all specific validation methods listed below
-function validateExpression(exp){
-    return true;
-}
-
-// we can make a bunch of other functions to evaluate the string if we need to. 
-
-function checkFirstChar(expression) {
-    if(isNaN(parseInt(expression[0])) && expression[0] != "-") {
-        return false;
-    }
-    return true;
-}
-
-function checkLastChar(expression) {
-    if(isNaN(parseInt(expression[expression.length-1]))) {
-        return false;
-    }
-    return true;
-}
-
-function checkForInvalidCharacters(expression) {
-    for(let i = 0; i < expression.length; i++) {
-        if(isNaN(parseInt(expression[i])) && expression[i] != "+" && expression[i] != "-" && expression[i] != "*" && expression[i] != "/") {
-            return false;// invalid character
-        }
-    }
-    return true;
-}
-
-function checkForOperators(expression) {
-    for(let i = 0; i < expression.length; i++) {
-        if(isNaN(parseInt(expression[i])) && expression[i] != "-") {
-            return true;
-        }
-    }
-    return false;
-}
-
-function checkForInvalidOperators(expression) {
-    for(let i = 0; i < expression.length; i++) {
-        if(expression[i] == "/" && expression[i+1] == "0") {
-            return false; // we can't divide by 0
-        }
-    }
-    return true;
-}
-
-function checkForNumbers(expression) {
-    for(let i = 0; i < expression.length; i++) {
-        if(!isNaN(parseInt(expression[i]))) {
-            return true;
-        }
-    }
-    return false;
-}
-
-function checkForParenthesis(expression) {
-    for(let i = 0; i < expression.length; i++) {
-        if(expression[i] == "(" || expression[i] == ")") {
-            return true;
-        }
-    }
-    return false;
-}
-
-function checkForInvalidParenthesis(expression) {
-    let open = 0;
-    let close = 0;
-    for(let i = 0; i < expression.length; i++) {
-        if(expression[i] == "(") {
-            open++;
-        }
-        else if(expression[i] == ")") {
-            close++;
-        }
-    }
-    if(open != close) {
-        return true;
-    }
-    return false;
-}
-
-function checkForMultipleParenthesis(expression) {
-    for(let i = 0; i < expression.length; i++) {
-        if(expression[i] == "(" || expression[i] == ")") {
-            if(expression[i+1] == "(" || expression[i+1] == ")") {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-function checkForDecimal(expression) {
-    for(let i = 0; i < expression.length; i++) {
-        if(expression[i] == ".") {
-            return true;
-        }
-    }
-    return false;
-}
-
-
-function checkForInvalidDecimals(expression) {
-    for(let i = 0; i < expression.length; i++) {
-        if(expression[i] == "." && isNaN(parseInt(expression[i+1]))) {
-            return false; // we can't have a decimal without a number after it
-        }
-    }
-    return true;
-}
-
-function checkForMultipleDecimals(expression) {
-    for(let i = 0; i < expression.length; i++) {
-        if(expression[i] == ".") {
-            if(expression[i+1] == ".") {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-function checkForNegative(expression) {
-    for(let i = 0; i < expression.length; i++) {
-        if(expression[i] == "-") {
-            return true;
-        }
-    }
-    return false;
-}
