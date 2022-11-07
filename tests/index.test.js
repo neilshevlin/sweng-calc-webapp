@@ -20,12 +20,12 @@ describe("Parsing tests", () => {
  
   test('test simple expression exp(2)', () => {//failing
     var result = evaluateExpression("exp(2)");
-    expect(result).toBe("7.38905609893065");
+    expect(result).toBe("7.389");
   })
   
   test('test simple expression log(2)', () => {//failing
     var result = evaluateExpression("log(2)");
-    expect(result).toBe("0.6931471805599453");
+    expect(result).toBe("0.693");
   })
   test('test simple expression 1-5', () => {
     var result = evaluateExpression("1-5");//failing
@@ -228,11 +228,11 @@ test('test expression 5+3exp(2)', () => {
   })
   test('test simple expression 2.4 + exp(2)', () => {
     var result = evaluateExpression("2.4 + exp(2)");
-    expect(result).toBe("9.78905609893065");
+    expect(result).toBe("9.789");
   })
   test('test simple expression 1.5 + log(3)', () => {
     var result = evaluateExpression("1.5 + log(3)");
-    expect(result).toBe("2.5986122886681096");
+    expect(result).toBe("2.598");
   })
   test('test simple expression 4/0', () => {
     var result = evaluateExpression("4/0");

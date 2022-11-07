@@ -31,7 +31,7 @@ export function evaluateExpression(expression) {
             let result = evaluatePostFix(postfix);
 
             //limit the result to only three decimal places
-            resString = result.toString()
+            let resString = result.toString()
             //if result is not an error message, limit
             if(!isNaN(resString) && resString.toString().indexOf('.') != -1)
                 resString = parseFloat(resString).toFixed(3);
