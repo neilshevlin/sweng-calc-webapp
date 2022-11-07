@@ -17,20 +17,6 @@ describe("Parsing tests", () => {
 // 8. isValidexpr for the ^ power operator
 // 9. isValidexpr for the natural log operator
 // 10. isValidexpr for exponent functions
- 
-  test('test simple expression exp(2)', () => {//failing
-    var result = evaluateExpression("exp(2)");
-    expect(result).toBe("7.389");
-  })
-  
-  test('test simple expression log(2)', () => {//failing
-    var result = evaluateExpression("log(2)");
-    expect(result).toBe("0.693");
-  })
-  test('test simple expression 1-5', () => {
-    var result = evaluateExpression("1-5");//failing
-    expect(result).toBe("-4");
-  })
 
   //tests for isValidexpr
   test('test simple expression 1+1', () => {
@@ -180,6 +166,22 @@ test('test expression 5+3exp(2)', () => {
   var result = isValidexpr("5+3exp(2)");
   expect(result.code).toBe(6);
 })
+
+//tests for evaluate Expression()
+test('test simple expression exp(2)', () => {
+  var result = evaluateExpression("exp(2)");
+  expect(result).toBe("7.389");
+})
+
+test('test simple expression log(2)', () => {
+  var result = evaluateExpression("log(2)");
+  expect(result).toBe("0.693");
+})
+test('test simple expression 1-5', () => {
+  var result = evaluateExpression("1-5");
+  expect(result).toBe("-4");
+})
+
   test('test simple expression 1*2', () => {
     var result = evaluateExpression("1*2");
     expect(result).toBe("2");
