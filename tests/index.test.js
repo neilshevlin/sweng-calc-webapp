@@ -238,4 +238,8 @@ test('test expression 5+3exp(2)', () => {
     var result = evaluateExpression("4/0");
     expect(result).toBe("Error: Division by Zero");
   })
+  test('test simple expression 2 * pi * 6 + 3', () => {
+    var result = evaluateExpression("2 * pi * 6 + 3");
+    expect(result).toBe("40.69911184307752");
+  })
 });
