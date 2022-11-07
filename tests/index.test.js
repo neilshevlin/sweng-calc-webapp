@@ -69,12 +69,12 @@ describe("Parsing tests", () => {
   })
 
   test('test simple expression 1+2*3', () => {
-    var result = isValidexpr("1+1*1");
+    var result = isValidexpr("1+2*3");
     expect(result.code).toBe(0);
   })
 
   test('test simple expression 1+2/3', () => {
-    var result = isValidexpr("1+1/1");
+    var result = isValidexpr("1+2/3");
     expect(result.code).toBe(0);
   })
   test('test expression 10*30.0', () => {
