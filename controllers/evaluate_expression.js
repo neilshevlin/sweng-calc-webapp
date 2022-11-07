@@ -142,6 +142,7 @@ function buildInfix(expression) {
                 infix.push(number);
             number = "";
             infix.push("tan");
+        }
 
         // pi constant number
         else if(

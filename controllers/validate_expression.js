@@ -7,7 +7,7 @@
      *4 = isn't valid: incorrect decimal placings
      *5 = isn't valid: incorrect use of brackets
      *6 = isn't valid: Incorrect log or exp function
-     *8 = isn't valid: Incorrect trigonometry function*/
+     *8 = isn't valid: Incorrect trigonometry function
      *7 = isn't valid: Incorrect constant*/
      
      export function isValidexpr(expr)
