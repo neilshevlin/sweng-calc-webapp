@@ -35,6 +35,8 @@ export function evaluateExpression(expression) {
             //if result is not an error message, limit
             if(!isNaN(resString) && resString.toString().indexOf('.') != -1)
                 resString = parseFloat(resString).toFixed(3);
+            //remove any additional trailing 0s by parsing float again
+            resString = parseFloat(resString);
             return resString;
         }else{
             //if expression not valid, return false (error)
