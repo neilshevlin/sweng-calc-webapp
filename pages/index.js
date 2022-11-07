@@ -33,10 +33,13 @@ export default function Home() {
     {char: '-', color:'black'},
     {char: 'Ans', color:'black'},
     {char: 'exp', color:'black'},
-    
+   
     {char: '0', color:'grey'},
     {char: '.', color:'grey'},
     {char: '=', color:'green'},
+    {char: 'sin', color:'black'},
+    {char: 'cos', color:'black'},
+    {char: 'tan', color:'black'},
     {char: 'pi', color:'grey'},
 ]
   return (

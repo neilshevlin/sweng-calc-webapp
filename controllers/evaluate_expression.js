@@ -103,6 +103,40 @@ function buildInfix(expression) {
             number = "";
             infix.push("ln");
         }
+
+        //sine trigonometry function
+        else if (expression.charAt(i) == 's' &&
+                expression.charAt(i+1) == 'i' &&
+                expression.charAt(i+2) == 'n')
+        {
+            i += 2
+            if(number != "")
+                infix.push(number);
+            number = "";
+            infix.push("sin");
+        }
+        //cosine trigonometry function
+        else if (expression.charAt(i) == 'c' &&
+                expression.charAt(i+1) == 'o' &&
+                expression.charAt(i+2) == 's')
+        {
+            i += 2
+            if(number != "")
+                infix.push(number);
+            number = "";
+            infix.push("cos");
+        }
+        //tangent trigonometry function
+        else if (expression.charAt(i) == 't' &&
+                expression.charAt(i+1) == 'a' &&
+                expression.charAt(i+2) == 'n')
+        {
+            i += 2
+            if(number != "")
+                infix.push(number);
+            number = "";
+            infix.push("tan");
+
         // pi constant number
         else if(
             expression.charAt(i) == 'p' &&
@@ -114,6 +148,7 @@ function buildInfix(expression) {
                 //return error case
                 return []
             infix.push(Math.PI.toString());
+
         }
 
 
@@ -139,8 +174,10 @@ function getOperatorPrecedence(opr){
         return 2;
     if(opr == "^")
         return 3;
-    if(opr == "log" || opr == "exp" || opr == "ln")
+    if(opr == "sin" || opr == "cos" || opr == "tan")
         return 4;
+    if(opr == "log" || opr == "exp" || opr == "ln")
+        return 5;
     return 0;
 }
 
@@ -250,6 +287,15 @@ function evaluatePostFix(postfix){
                     break;
                 case "ln":
                     calculationStack.push( Math.log(calculationStack.pop()) );
+                    break;
+                case "sin":
+                    calculationStack.push( Math.sin(calculationStack.pop()) );
+                    break;
+                case "cos":
+                    calculationStack.push( Math.cos(calculationStack.pop()) );
+                    break;
+                case "tan":
+                    calculationStack.push( Math.tan(calculationStack.pop()) );
                     break;
                 default:
                     break;
