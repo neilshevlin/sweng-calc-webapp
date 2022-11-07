@@ -17,20 +17,8 @@ describe("Parsing tests", () => {
 // 8. isValidexpr for the ^ power operator
 // 9. isValidexpr for the natural log operator
 // 10. isValidexpr for exponent functions
- 
-  test('test simple expression exp(2)', () => {//failing
-    var result = evaluateExpression("exp(2)");
-    expect(result).toBe("7.389");
-  })
-  
-  test('test simple expression log(2)', () => {//failing
-    var result = evaluateExpression("log(2)");
-    expect(result).toBe("0.693");
-  })
-  test('test simple expression 1-5', () => {
-    var result = evaluateExpression("1-5");//failing
-    expect(result).toBe("-4");
-  })
+
+  //tests for isValidexpr
   test('test simple expression 1+1', () => {
     var result = isValidexpr("1+1");
     expect(result.code).toBe(0);
@@ -51,7 +39,7 @@ describe("Parsing tests", () => {
   })
 
   test('test simple expression 1+2+3', () => {
-    var result = isValidexpr("1+1+1");
+    var result = isValidexpr("1+2+3");
     expect(result.code).toBe(0);
   })
   test('test simple expression 30^2', () => {
@@ -64,17 +52,17 @@ describe("Parsing tests", () => {
   })
 
   test('test simple expression 1+2-3', () => {
-    var result = isValidexpr("1+1-1");
+    var result = isValidexpr("1+2-3");
     expect(result.code).toBe(0);
   })
 
   test('test simple expression 1+2*3', () => {
-    var result = isValidexpr("1+1*1");
+    var result = isValidexpr("1+2*3");
     expect(result.code).toBe(0);
   })
 
   test('test simple expression 1+2/3', () => {
-    var result = isValidexpr("1+1/1");
+    var result = isValidexpr("1+2/3");
     expect(result.code).toBe(0);
   })
   test('test expression 10*30.0', () => {
@@ -178,6 +166,22 @@ test('test expression 5+3exp(2)', () => {
   var result = isValidexpr("5+3exp(2)");
   expect(result.code).toBe(6);
 })
+
+//tests for evaluate Expression()
+test('test simple expression exp(2)', () => {
+  var result = evaluateExpression("exp(2)");
+  expect(result).toBe("7.389");
+})
+
+test('test simple expression log(2)', () => {
+  var result = evaluateExpression("log(2)");
+  expect(result).toBe("0.693");
+})
+test('test simple expression 1-5', () => {
+  var result = evaluateExpression("1-5");
+  expect(result).toBe("-4");
+})
+
   test('test simple expression 1*2', () => {
     var result = evaluateExpression("1*2");
     expect(result).toBe("2");
@@ -232,7 +236,7 @@ test('test expression 5+3exp(2)', () => {
   })
   test('test simple expression 1.5 + log(3)', () => {
     var result = evaluateExpression("1.5 + log(3)");
-    expect(result).toBe("2.598");
+    expect(result).toBe("2.599");
   })
   test('test simple expression 4/0', () => {
     var result = evaluateExpression("4/0");
@@ -240,10 +244,10 @@ test('test expression 5+3exp(2)', () => {
   })
   test('test simple expression sin(6) + log(20) - cos(1) * tan(4/5)', () => {
     var result = evaluateExpression("sin(6) + log(20) - cos(1) * tan(4/5)");
-    expect(result).toBe("2.160000688770009");
+    expect(result).toBe("2.16");
    })
   test('test simple expression 2 * pi * 6 + 3', () => {
     var result = evaluateExpression("2 * pi * 6 + 3");
-    expect(result).toBe("40.69911184307752");
+    expect(result).toBe("40.699");
   })
 });
