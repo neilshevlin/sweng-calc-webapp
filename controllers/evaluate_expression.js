@@ -29,7 +29,13 @@ export function evaluateExpression(expression) {
 
             //evaluate result as float from postfix expression
             let result = evaluatePostFix(postfix);
-            return result.toString();
+
+            //limit the result to only three decimal places
+            resString = result.toString()
+            //if result is not an error message, limit
+            if(!isNaN(resString) && resString.toString().indexOf('.') != -1)
+                resString = parseFloat(resString).toFixed(3);
+            return resString;
         }else{
             //if expression not valid, return false (error)
             return false;
