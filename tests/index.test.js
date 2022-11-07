@@ -31,6 +31,8 @@ describe("Parsing tests", () => {
     var result = evaluateExpression("1-5");//failing
     expect(result).toBe("-4");
   })
+
+  //tests for isValidexpr
   test('test simple expression 1+1', () => {
     var result = isValidexpr("1+1");
     expect(result.code).toBe(0);
@@ -51,7 +53,7 @@ describe("Parsing tests", () => {
   })
 
   test('test simple expression 1+2+3', () => {
-    var result = isValidexpr("1+1+1");
+    var result = isValidexpr("1+2+3");
     expect(result.code).toBe(0);
   })
   test('test simple expression 30^2', () => {
@@ -64,7 +66,7 @@ describe("Parsing tests", () => {
   })
 
   test('test simple expression 1+2-3', () => {
-    var result = isValidexpr("1+1-1");
+    var result = isValidexpr("1+2-3");
     expect(result.code).toBe(0);
   })
 
