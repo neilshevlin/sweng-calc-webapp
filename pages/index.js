@@ -17,6 +17,7 @@ export default function Home() {
     {char: '(', color:'black'},
     {char: ')', color:'black'},
     {char: 'ln', color:'black'},
+
     {char: '4', color:'grey'},
     {char: '5', color:'grey'},
     {char: '6', color:'grey'},
@@ -24,6 +25,7 @@ export default function Home() {
     {char: 'x', color:'black'},
     {char: 'log', color:'black'},
     {char: '^', color:'black'},
+
     {char: '1', color:'grey'},
     {char: '2', color:'grey'},
     {char: '3', color:'grey'},
@@ -31,13 +33,14 @@ export default function Home() {
     {char: '-', color:'black'},
     {char: 'Ans', color:'black'},
     {char: 'exp', color:'black'},
+   
     {char: '0', color:'grey'},
     {char: '.', color:'grey'},
     {char: '=', color:'green'},
-
     {char: 'sin', color:'black'},
     {char: 'cos', color:'black'},
     {char: 'tan', color:'black'},
+    {char: 'pi', color:'grey'},
 ]
   return (
     <div className={styles.container}>

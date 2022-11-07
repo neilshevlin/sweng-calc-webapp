@@ -8,6 +8,7 @@
      *5 = isn't valid: incorrect use of brackets
      *6 = isn't valid: Incorrect log or exp function
      *8 = isn't valid: Incorrect trigonometry function*/
+     *7 = isn't valid: Incorrect constant*/
      
      export function isValidexpr(expr)
      {
@@ -19,6 +20,7 @@
          var checkingSin = false;
          var checkingCos = false;
          var checkingTan = false;
+         var checkingPi = false;
 
          if(expr == "")
          {
@@ -93,6 +95,7 @@
                         return {code: 4, message: "Incorrect decimal placings", valid: false};
                     }
                  }
+
                  //if it is an open bracket
                  else if(currChar == '(')
                  {
@@ -109,6 +112,7 @@
                     leftBracketUsed = true;
                     
                  }
+
                  //if closing bracket
                  else if(currChar == ')')
                  {
@@ -138,6 +142,7 @@
                     
                     leftBracketUsed = false; //reset left bracket
                  }
+
                  //checking log
                  else if(currChar == 'l')
                  {
@@ -180,6 +185,9 @@
                     if(!checkingLog && !checkingSin && checkingTan)
                     {
                         return {code: 6, message: "Incorrect log function", valid: false};
+                    }else{
+                        //flag end of checkingLog
+                        checkingLog == false;
                     }
                     if(checkingSin)
                         //close check of sine function if n encountered
@@ -188,6 +196,7 @@
                         //close check of tan function if n encountered
                         checkingTan = false;
                  }
+
                  //checking exp
                  else if(currChar == 'e')
                  {
@@ -218,10 +227,25 @@
                  {
                     if(!checkingExp)
                     {
-                        return {code: 6, message: "Incorrect log function", valid: false};
+                        checkingPi = true;
+                        //if the next characters do not make up exp(x) it returns an error
+                        if(expr.charAt(i+1)!='i')
+                        {
+                            return {code: 7, message: "Incorrect constant", valid: false};
+                        }
+                        else if(i!=0)
+                        {
+                            //if it is not an operator before the pi constant it is an error: 34pi
+                            if(!isOperator(expr.charAt(i-1)))
+                            {
+                                return {code: 7, message: "Incorrect constant", valid: false};
+                            }
+                        }
+                    }else{
+                        //flag end of checking for exp
+                        checkingExp = false;
                     }
                  }
-
                  //checking sin
                  else if(currChar == 's')
                  {
@@ -299,6 +323,17 @@
                         return {code: 8, message: "Incorrect tan function", valid: false};
                     }
                  }
+                  else if(currChar =='i')
+                  {
+                     if(!checkingExp)
+                     {
+                         return {code: 6, message: "Incorrect constant", valid: false};
+                     }else{
+                         //flag end of checking for pi
+                         checkingPi = false;
+                     }
+                  }
+
                      
                  //If it isn't a valid character
                  else
