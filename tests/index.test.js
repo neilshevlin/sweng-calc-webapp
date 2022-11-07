@@ -236,7 +236,7 @@ test('test simple expression 1-5', () => {
   })
   test('test simple expression 1.5 + log(3)', () => {
     var result = evaluateExpression("1.5 + log(3)");
-    expect(result).toBe("2.598");
+    expect(result).toBe("2.599");
   })
   test('test simple expression 4/0', () => {
     var result = evaluateExpression("4/0");
@@ -244,7 +244,7 @@ test('test simple expression 1-5', () => {
   })
   test('test simple expression sin(6) + log(20) - cos(1) * tan(4/5)', () => {
     var result = evaluateExpression("sin(6) + log(20) - cos(1) * tan(4/5)");
-    expect(result).toBe("2.160");
+    expect(result).toBe("2.16");
    })
   test('test simple expression 2 * pi * 6 + 3', () => {
     var result = evaluateExpression("2 * pi * 6 + 3");
